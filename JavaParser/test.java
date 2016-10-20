@@ -1,101 +1,51 @@
-import java.util.Scanner;
+package controller;
 
-public class Application {
-	//main method
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		DequeADT<Object> t1 = new NodeDeque<>();
-		boolean quit = false;
-		String choice = "";
-		String item;
-		Application.displayMenu();
-		
-		if(true){
-			System.out.println("Hello");
-		}
-		while (!quit) {
-			choice = input.next();
-			switch (choice) {
-			case "af":
-				System.out.println("Enter the string to be pushed: ");
-				item = input.next();
-				t1.addFirst(item);
-				break;
-			case "al":
-				System.out.println("Enter the string to be pushed: ");
-				item = input.next();
-				t1.addLast(item);
-				break;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-			case "gf":
-				try {
-					System.out.println("Item is: " + t1.getFirst());
-				} catch (EmptyDequeException e) {
-					System.out.println(e.getMessage());
-				}
-				break;
+import model.ProjectManager;
+import view.FileManagerGUI;
 
-			case "gl":
-				try {
-					System.out.println("Item is: " + t1.getLast());
-				} catch (EmptyDequeException e) {
-					System.out.println(e.getMessage());
-				}
-				break;
+/**
+ * The MenuFileListener handles the events on the menu bar of the application
+ * which include file loading and saving buttons.
+ *
+ */
+public class MenuFileListener implements ActionListener {
+	FileManagerGUI fmGUI;
+	ProjectManager pm;
 
-			case "rf":
-				try {
-					System.out.println("Item removed is: " + t1.removeFirst());
-				} catch (EmptyDequeException e) {
-					System.out.println(e.getMessage());
-				}
-				break;
+	public MenuFileListener(ProjectManager pm) {
+		this.pm = pm;
+	}
 
-			case "rl":
-				try {
-					System.out.println("Item removed is: " + t1.removeLast());
-				} catch (EmptyDequeException e) {
-					System.out.println(e.getMessage());
-				}
-				break;
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		switch (e.getActionCommand()) {
+		case "Save As...":
+			fileSave();
+			break;
 
-			case "e":
-				if (t1.isEmpty())
-					System.out.println("Deque is empty");
-				else
-					System.out.println("Deque is not empty");
-				break;
-
-			case "s":
-				System.out.println("Size is: " + t1.size());
-				break;
-			case "q":
-				quit = true;
-				break;
-
-			case "i":
-				Application.displayMenu();
-				break;
-			default:
-				System.out
-						.println("Invalid choice insert i to view instructions");
-			}
+		case "Load...":
+			fileLoad();
+			break;
 		}
 	}
-	//Display Menu!!!
-	private static void displayMenu() {
-		System.out.println("Select");
-		System.out.println(" af to push to the front of the Deque");
-		System.out.println(" al to push to the back of the Deque");
-		System.out.println(" gf to view item on front of Deque");
-		System.out.println(" gl to view item on back of Deque");
-		System.out.println(" rf to remove item from the front of the Deque");
-		System.out.println(" rl to remove item from the back of the Deque");
-		System.out.println(" e to see if Deque is empty");
-		System.out.println(" s for number of items on the Deque");
-		System.out.println(" q to quit");
-		System.out.println(" i to repeat this list");
-		System.out
-				.println("____________________________________________________");
+
+	public void fileSave() {
+		fmGUI = new FileManagerGUI();
+		String filePath = fmGUI.getSaveFilePath();
+		if (filePath!= null && !filePath.isEmpty()) {
+			pm.saveAs(filePath);
+		}
+	}
+
+	public void fileLoad() {
+		fmGUI = new FileManagerGUI();
+		String filePath = fmGUI.getLoadFilePath();
+		if (filePath!= null && !filePath.isEmpty()) {
+			pm.clearAllBoardGizmos();
+			pm.loadFile(filePath);
+		}
 	}
 }
