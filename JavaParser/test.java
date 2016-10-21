@@ -1,51 +1,86 @@
-package controller;
+package gizmos;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Color;
+import java.awt.geom.Ellipse2D;
 
-import model.ProjectManager;
-import view.FileManagerGUI;
+public class Teleporter extends AbstractGizmo {
 
-/**
- * The MenuFileListener handles the events on the menu bar of the application
- * which include file loading and saving buttons.
- *
- */
-public class MenuFileListener implements ActionListener {
-	FileManagerGUI fmGUI;
-	ProjectManager pm;
+	private double radius;
+	Ball boardBall = null;
 
-	public MenuFileListener(ProjectManager pm) {
-		this.pm = pm;
+	/**
+	 * The Teleporter class represents a Teleporter object on the board
+	 * which teleports a ball to another Teleporter
+	 *
+	 */
+	public Teleporter(int x, int y) {
+		super(x, y, 1, 1,
+				Color.CYAN, // colour of gizmo
+				1 // reflection coefficent
+		);
+
+		this.type = "Teleporter";
+
+
 	}
 
+	/**
+	 * @see gizmos.AbstractGizmo#setGizShape
+	 */
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		switch (e.getActionCommand()) {
-		case "Save As...":
-			fileSave();
-			break;
-
-		case "Load...":
-			fileLoad();
-			break;
-		}
+	public void setGizShape(double x, double y) {
+		
+		setShape(new Ellipse2D.Double(
+				(x),
+				(y),
+				(width),
+				(height)
+		));
+		
 	}
 
-	public void fileSave() {
-		fmGUI = new FileManagerGUI();
-		String filePath = fmGUI.getSaveFilePath();
-		if (filePath!= null && !filePath.isEmpty()) {
-			pm.saveAs(filePath);
-		}
+	/**
+	 * @see gizmos.AbstractGizmo#setGizPhysics
+	 */
+	@Override
+	public void setGizPhysics(double x, double y) {
+
+		this.radius = 0.5;
+		
+		addPhysicsCircle(x + radius, y + radius, radius);
+		
+	}
+	
+	private void get(){
+	
 	}
 
-	public void fileLoad() {
-		fmGUI = new FileManagerGUI();
-		String filePath = fmGUI.getLoadFilePath();
-		if (filePath!= null && !filePath.isEmpty()) {
-			pm.clearAllBoardGizmos();
-			pm.loadFile(filePath);
+	/**
+	 * @see gizmos.AbstractGizmo#onHit
+	 */
+	@Override
+	public void onHit(AbstractGizmo hit) {
+		// hold the ball in this
+
+		boardBall = ((Ball) hit);
+
+		if(boardBall != null) {
+
+
+			java.util.List<AbstractGizmo> connected = this.gizmoListeners;
+			
+			for (AbstractGizmo a : connected) {
+				
+				if (a instanceof Teleporter) {
+					
+					boardBall.setPos(a.getXPos() + 1, a.getYPos() + 1);
+					
+					break;
+				}
+			}
 		}
+
 	}
+
+
 }

@@ -86,12 +86,13 @@ public class MethodPrinter {
     		}
     		
 
-    		System.out.println("Class Methods: ");
-    		for(MethodDeclaration m : c.getMethods()){
-    			System.out.println(m.getDeclarationAsString());
-    		}
-    		
-    		
+//    		System.out.println("Class Methods: ");
+//    		for(MethodDeclaration m : c.getMethods()){
+//    			System.out.println(m.getDeclarationAsString());
+//    		}
+//    		
+    		VoidVisitorAdapter method = new MethodVisitor();
+    		method.visit(c, arg);
     		
     		super.visit(c, arg);
     	}
@@ -114,7 +115,6 @@ public class MethodPrinter {
     		System.out.println("Class Constructor: " + c.getName());
     		System.out.println("Class Constructor Parameters: ");
     		for(Parameter p : c.getParameters()){
-    			
     			System.out.println(p.getType() + " " + p.getName());
     		}
     		
@@ -134,6 +134,4 @@ public class MethodPrinter {
     	}
     }
     
-   
-
 }
