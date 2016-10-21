@@ -1,86 +1,68 @@
-package gizmos;
+package controller;
 
-import java.awt.Color;
-import java.awt.geom.Ellipse2D;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class Teleporter extends AbstractGizmo {
+import javax.swing.JPanel;
 
-	private double radius;
-	Ball boardBall = null;
+import model.GizmoConstants;
+import model.ProjectManager;
+
+public class BoardListener implements MouseListener {
+
+	private JPanel board;
+	private ProjectManager pm;
+	private int x,y;
 
 	/**
-	 * The Teleporter class represents a Teleporter object on the board
-	 * which teleports a ball to another Teleporter
+	 * The BoardListener class implements the MouseListener interface and handles
+	 * the mouse events on the play board.
 	 *
 	 */
-	public Teleporter(int x, int y) {
-		super(x, y, 1, 1,
-				Color.CYAN, // colour of gizmo
-				1 // reflection coefficent
-		);
-
-		this.type = "Teleporter";
-
-
+	public BoardListener(ProjectManager pm, JPanel board) {
+		this.board = board;
+		this.pm = pm;
 	}
 
-	/**
-	 * @see gizmos.AbstractGizmo#setGizShape
-	 */
 	@Override
-	public void setGizShape(double x, double y) {
-		
-		setShape(new Ellipse2D.Double(
-				(x),
-				(y),
-				(width),
-				(height)
-		));
-		
+	public void mouseClicked(MouseEvent e) {
+
 	}
 
-	/**
-	 * @see gizmos.AbstractGizmo#setGizPhysics
-	 */
 	@Override
-	public void setGizPhysics(double x, double y) {
-
-		this.radius = 0.5;
-		
-		addPhysicsCircle(x + radius, y + radius, radius);
-		
-	}
-	
-	private void get(){
-	
-	}
-
-	/**
-	 * @see gizmos.AbstractGizmo#onHit
-	 */
-	@Override
-	public void onHit(AbstractGizmo hit) {
-		// hold the ball in this
-
-		boardBall = ((Ball) hit);
-
-		if(boardBall != null) {
-
-
-			java.util.List<AbstractGizmo> connected = this.gizmoListeners;
-			
-			for (AbstractGizmo a : connected) {
-				
-				if (a instanceof Teleporter) {
-					
-					boardBall.setPos(a.getXPos() + 1, a.getYPos() + 1);
-					
-					break;
-				}
-			}
+	public void mousePressed(MouseEvent e) {
+		if (pm.isBuildModeOn()) {
+			x = e.getX() / (GizmoConstants.BOARD_WIDTH / GizmoConstants.X_CELLS);
+			y = e.getY() / (GizmoConstants.BOARD_HEIGHT / GizmoConstants.Y_CELLS);
 		}
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		if (!pm.isBuildModeOn())
+			return;
+
+		int destx = e.getX() / (GizmoConstants.BOARD_WIDTH / GizmoConstants.X_CELLS);
+		int desty = e.getY() / (GizmoConstants.BOARD_HEIGHT / GizmoConstants.Y_CELLS);
+
+		CommandMapper.Command getCom = CommandMapper.getCommandByUID(pm.getCurrentCommand());
+
+		if(getCom != null && getCom.getCommandLevel().equals(CommandMapper.CommandLevel.BOARD_LEVEL))
+			getCom.getAction().onClickAndRelease(x, y, destx, desty);
+
+		pm.pushVisualUpdate();
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
 
 	}
 
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 
+	}
+	
 }
