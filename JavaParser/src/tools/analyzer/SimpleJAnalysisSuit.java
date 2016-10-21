@@ -37,7 +37,7 @@ public class SimpleJAnalysisSuit {
 	
 	public static void main(String[] args) throws Exception {
 		// creates an input stream for the file to be parsed
-		FileInputStream in = new FileInputStream("/suit/test.java/");
+		FileInputStream in = new FileInputStream("suit/test.java/");
 
 		CompilationUnit cu;
 		try {
