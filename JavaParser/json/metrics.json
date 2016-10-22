@@ -1,0 +1,7 @@
+[
+	"tools.metrics.CodeLineVisitor",
+	"tools.metrics.CommentRatioVisitor",
+	"tools.metrics.WMCnpVisitor",
+	"tools.metrics.WMCVisitor",
+	"tools.metrics.ImplVisitor"
+]

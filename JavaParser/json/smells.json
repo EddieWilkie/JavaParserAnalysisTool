@@ -1,0 +1,5 @@
+[
+	"tools.codesmells.LargeClassVisitor",
+	"tools.codesmells.LongMethodVisitor",
+	"tools.codesmells.LongParameterVisitor"
+]

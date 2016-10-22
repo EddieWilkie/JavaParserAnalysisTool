@@ -1,0 +1,7 @@
+[
+		"tools.classdiagram.ClassExtendsVisitor",
+		"tools.classdiagram.ClassImplementsVisitor",
+		"tools.classdiagram.ClassFieldVisitor",
+		"tools.classdiagram.ClassNameVisitor",
+		"tools.classdiagram.ClassMethodVisitor"
+]
