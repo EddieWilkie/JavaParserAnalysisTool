@@ -12,7 +12,9 @@ public class BoardListener implements MouseListener {
 
 	private JPanel board;
 	private ProjectManager pm;
-	private int x,y;
+	private int x;
+	private int y;
+	public String length;
 
 	/**
 	 * The BoardListener class implements the MouseListener interface and handles
@@ -51,6 +53,10 @@ public class BoardListener implements MouseListener {
 			getCom.getAction().onClickAndRelease(x, y, destx, desty);
 
 		pm.pushVisualUpdate();
+	}
+	
+	public int test(){
+		return 1;
 	}
 
 	@Override

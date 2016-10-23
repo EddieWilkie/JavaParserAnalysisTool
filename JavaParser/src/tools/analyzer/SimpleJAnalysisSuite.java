@@ -10,48 +10,62 @@ import tools.classdiagram.SimpleClassDiagramAnalyzer;
 import tools.codesmells.SimpleBadSmellsAnalyzer;
 import tools.metrics.SimpleMetricAnalyzer;
 
-public class SimpleJAnalysisSuit {
+public class SimpleJAnalysisSuite {
 	private Analyzer metrics, diagram, smells;
 
-	public SimpleJAnalysisSuit(CompilationUnit cu) {
+	public SimpleJAnalysisSuite(CompilationUnit cu) {
 		metrics = new SimpleMetricAnalyzer(cu);
 		diagram = new SimpleClassDiagramAnalyzer(cu);
 		smells = new SimpleBadSmellsAnalyzer(cu);
 	}
 
 	public void analyzeMetrics() {
+		print("Software Metrics");
 		metrics.analyze();
 	}
 
 	public void analyzeBadSmells() {
+		print("Bad Smell");
 		smells.analyze();
 	}
 
 	public void analyzeClassDiagram() {
+		print("Class Diagram");
 		diagram.analyze();
 	}
 
 	public void analyzeAll() {
-		metrics.analyze();
-		smells.analyze();
+		System.out.println("Running Multiple Analyzers...");
+		print("Class Diagram");
 		diagram.analyze();
+		print("Bad Smell");
+		smells.analyze();
+		print("Software Metrics");
+		metrics.analyze();
+		
+	}
+	
+	private void print(String type){
+		System.out.println();
+		System.out.println("Running " + type + " Analyzer...");
+		System.out.println("================================");
+		System.out.println();
 	}
 
 	public static void main(String[] args) throws Exception {
 		// creates an input stream for the file to be parsed
-		File dir = new File("suit");
+		File dir = new File("suite");
 		for (File f : dir.listFiles()) {
 			FileInputStream in = new FileInputStream(f);
 
 			CompilationUnit cu;
 			try {
 				cu = JavaParser.parse(in);
-				SimpleJAnalysisSuit testSuit = new SimpleJAnalysisSuit(cu);
+				SimpleJAnalysisSuite testSuit = new SimpleJAnalysisSuite(cu);
 				testSuit.analyzeAll();
 			} finally {
 				in.close();
 			}
-			
 		}
 	}
 

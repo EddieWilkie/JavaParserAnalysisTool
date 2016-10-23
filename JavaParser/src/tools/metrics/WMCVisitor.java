@@ -6,6 +6,6 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 public class WMCVisitor extends VoidVisitorAdapter {
 	@Override
 	public void visit(ClassOrInterfaceDeclaration n, Object arg) {
-		System.out.println("WMC = " + n.getMethods().size());
+		System.out.println("Weighted Method Count = " + n.getMethods().size());
 	}
 }

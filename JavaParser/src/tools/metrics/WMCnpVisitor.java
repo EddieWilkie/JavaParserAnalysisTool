@@ -16,7 +16,7 @@ public class WMCnpVisitor extends VoidVisitorAdapter {
 				}
 			}
 		}
-		System.out.println("WMCnp = " + WMCnp);
+		System.out.println("Weighted Method Countnp = " + WMCnp);
 	}
 
 }
