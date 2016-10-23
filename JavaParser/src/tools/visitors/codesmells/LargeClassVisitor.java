@@ -1,4 +1,4 @@
-package tools.codesmells;
+package tools.visitors.codesmells;
 
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;

@@ -1,51 +1,52 @@
-package tools.analyzer;
+package tools.analyzers;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.List;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 
-import tools.classdiagram.SimpleClassDiagramAnalyzer;
-import tools.codesmells.SimpleBadSmellsAnalyzer;
-import tools.metrics.SimpleMetricAnalyzer;
-
 public class SimpleJAnalysisSuite {
-	private Analyzer metrics, diagram, smells;
+	private List<Analyzer> analyzers;
+	private CompilationUnit cu;
 
 	public SimpleJAnalysisSuite(CompilationUnit cu) {
-		metrics = new SimpleMetricAnalyzer(cu);
-		diagram = new SimpleClassDiagramAnalyzer(cu);
-		smells = new SimpleBadSmellsAnalyzer(cu);
-	}
-
-	public void analyzeMetrics() {
-		print("Software Metrics");
-		metrics.analyze();
-	}
-
-	public void analyzeBadSmells() {
-		print("Bad Smell");
-		smells.analyze();
+		this.cu = cu;
+		analyzers = new JsonAnalyzerParser().getAnalyzersFromJson("json/analyzers.json");
 	}
 
 	public void analyzeClassDiagram() {
 		print("Class Diagram");
-		diagram.analyze();
+		for (Analyzer a : analyzers)
+			if (a.equals(SimpleClassDiagramAnalyzer.class))
+				a.analyze(cu, null);
+	}
+
+	public void analyzeBadSmells() {
+		print("Bad Smell");
+		for (Analyzer a : analyzers)
+			if (a.equals(SimpleBadSmellsAnalyzer.class))
+				a.analyze(cu, null);
+
+	}
+
+	public void analyzeMetrics() {
+		print("Software Metrics");
+		for (Analyzer a : analyzers)
+			if (a.equals(SimpleMetricAnalyzer.class))
+				a.analyze(cu, null);
 	}
 
 	public void analyzeAll() {
 		System.out.println("Running Multiple Analyzers...");
 		print("Class Diagram");
-		diagram.analyze();
-		print("Bad Smell");
-		smells.analyze();
-		print("Software Metrics");
-		metrics.analyze();
-		
+		for (Analyzer a : analyzers)
+			a.analyze(cu, null);
+
 	}
-	
-	private void print(String type){
+
+	private void print(String type) {
 		System.out.println();
 		System.out.println("Running " + type + " Analyzer...");
 		System.out.println("================================");
@@ -54,7 +55,7 @@ public class SimpleJAnalysisSuite {
 
 	public static void main(String[] args) throws Exception {
 		// creates an input stream for the file to be parsed
-		File dir = new File("suite");
+		File dir = new File("testsuite");
 		for (File f : dir.listFiles()) {
 			FileInputStream in = new FileInputStream(f);
 

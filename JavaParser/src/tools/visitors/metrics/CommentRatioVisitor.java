@@ -1,4 +1,4 @@
-package tools.metrics;
+package tools.visitors.metrics;
 
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;

@@ -1,4 +1,4 @@
-package tools.classdiagram;
+package tools.visitors.classdiagram;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,1 +1,5 @@
-[]
+[
+	"tools.analyzers.SimpleClassDiagramAnalyzer",
+	"tools.analyzers.SimpleBadSmellsAnalyzer",
+	"tools.analyzers.SimpleMetricAnalyzer"
+]

@@ -1,6 +1,6 @@
-package tools.analyzer;
+package tools.analyzers;
 import com.github.javaparser.ast.CompilationUnit;
 
 public interface Analyzer {
-public void analyze();
+public void analyze(CompilationUnit cu, Object arg);
 }

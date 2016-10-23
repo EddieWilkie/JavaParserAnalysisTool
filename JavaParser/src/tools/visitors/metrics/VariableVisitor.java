@@ -1,4 +1,4 @@
-package tools.metrics;
+package tools.visitors.metrics;
 
 public class VariableVisitor {
 

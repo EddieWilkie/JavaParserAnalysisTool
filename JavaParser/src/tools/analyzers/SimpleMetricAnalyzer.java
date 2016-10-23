@@ -1,4 +1,4 @@
-package tools.metrics;
+package tools.analyzers;
 
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -10,21 +10,17 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-import tools.analyzer.Analyzer;
-import tools.analyzer.JsonVisitorParser;
-
 public class SimpleMetricAnalyzer implements Analyzer {
 	private List<VoidVisitorAdapter> visitors;
-	private CompilationUnit cu;
 
-	public SimpleMetricAnalyzer(CompilationUnit cu) {
+	public SimpleMetricAnalyzer() {
 		visitors = new JsonVisitorParser().getVisitorsFromJson("json/metrics.json");
-		this.cu = cu;
+	
 	}
 
 	@Override
-	public void analyze() {
+	public void analyze(CompilationUnit cu, Object arg) {
 		for (VoidVisitorAdapter v : visitors)
-			v.visit(cu, null);
+			v.visit(cu, arg);
 	}
 }

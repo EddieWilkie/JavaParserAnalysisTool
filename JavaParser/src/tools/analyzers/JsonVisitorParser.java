@@ -1,4 +1,4 @@
-package tools.analyzer;
+package tools.analyzers;
 
 import java.io.FileReader;
 import java.util.ArrayList;

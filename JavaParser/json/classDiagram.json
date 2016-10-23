@@ -1,8 +1,8 @@
 [
-		"tools.classdiagram.ClassNameVisitor",
-		"tools.classdiagram.ClassFieldVisitor",
-		"tools.classdiagram.ClassMethodVisitor",
-		"tools.classdiagram.ClassExtendsVisitor",
-		"tools.classdiagram.ClassImplementsVisitor",
-		"tools.classdiagram.ClassAssociationVisitor"
+		"tools.visitors.classdiagram.ClassNameVisitor",
+		"tools.visitors.classdiagram.ClassFieldVisitor",
+		"tools.visitors.classdiagram.ClassMethodVisitor",
+		"tools.visitors.classdiagram.ClassExtendsVisitor",
+		"tools.visitors.classdiagram.ClassImplementsVisitor",
+		"tools.visitors.classdiagram.ClassAssociationVisitor"
 ]

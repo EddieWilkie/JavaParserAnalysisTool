@@ -1,4 +1,4 @@
-package tools.codesmells;
+package tools.analyzers;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -15,20 +15,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
-import tools.analyzer.Analyzer;
-import tools.analyzer.JsonVisitorParser;
-
 public class SimpleBadSmellsAnalyzer implements Analyzer {
-	private CompilationUnit cu;
 	private List<VoidVisitorAdapter> visitors;
 
-	public SimpleBadSmellsAnalyzer(CompilationUnit cu) {
-		this.cu = cu;
+	public SimpleBadSmellsAnalyzer() {
 		visitors = new JsonVisitorParser().getVisitorsFromJson("json/smells.json");
 	}
 	
-	public void analyze() {
+	public void analyze(CompilationUnit cu, Object arg) {
 		for (VoidVisitorAdapter v : visitors)
-			v.visit(cu, null);
+			v.visit(cu, arg);
 	}
 }

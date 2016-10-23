@@ -1,4 +1,4 @@
-package tools.classdiagram;
+package tools.visitors.classdiagram;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
