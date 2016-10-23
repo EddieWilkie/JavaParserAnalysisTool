@@ -1,4 +1,4 @@
-package tools.analyzers;
+package tools.jsonparsers;
 
 import java.io.FileReader;
 import java.util.ArrayList;

@@ -10,6 +10,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
+import tools.jsonparsers.JsonVisitorParser;
+
 public class SimpleMetricAnalyzer implements Analyzer {
 	private List<VoidVisitorAdapter> visitors;
 

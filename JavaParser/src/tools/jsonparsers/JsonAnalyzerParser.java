@@ -1,4 +1,4 @@
-package tools.analyzers;
+package tools.jsonparsers;
 
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -8,6 +8,8 @@ import com.github.javaparser.ast.CompilationUnit;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+
+import tools.analyzers.Analyzer;
 
 public class JsonAnalyzerParser {
 	public List<Analyzer> getAnalyzersFromJson(String path) {

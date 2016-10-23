@@ -1,4 +1,4 @@
-package tools.analyzers;
+package suite;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -6,6 +6,12 @@ import java.util.List;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
+
+import tools.analyzers.Analyzer;
+import tools.analyzers.SimpleBadSmellsAnalyzer;
+import tools.analyzers.SimpleClassDiagramAnalyzer;
+import tools.analyzers.SimpleMetricAnalyzer;
+import tools.jsonparsers.JsonAnalyzerParser;
 
 public class SimpleJAnalysisSuite {
 	private List<Analyzer> analyzers;

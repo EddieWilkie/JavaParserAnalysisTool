@@ -15,6 +15,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
+import tools.jsonparsers.JsonVisitorParser;
+
 public class SimpleBadSmellsAnalyzer implements Analyzer {
 	private List<VoidVisitorAdapter> visitors;
 

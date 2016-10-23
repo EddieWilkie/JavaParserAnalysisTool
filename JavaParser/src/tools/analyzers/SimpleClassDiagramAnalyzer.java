@@ -7,6 +7,8 @@ import java.util.Map;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
+import tools.jsonparsers.JsonVisitorParser;
+
 public class SimpleClassDiagramAnalyzer implements Analyzer{
 	
 	private List<VoidVisitorAdapter> visitors;
