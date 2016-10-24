@@ -48,10 +48,9 @@ public class SimpleJAnalysisSuite {
 
 	public void analyzeAll(CompilationUnit cu, Object arg) {
 		System.out.println("Running Multiple Analyzers...");
-		print("Class Diagram");
-		for (Analyzer a : analyzers)
-			a.analyze(cu, arg);
-
+		analyzeClassDiagram(cu,arg);
+		analyzeBadSmells(cu,arg);
+		analyzeMetrics(cu,arg);
 	}
 
 	private void print(String type) {
