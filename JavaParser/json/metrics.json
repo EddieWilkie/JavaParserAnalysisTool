@@ -3,5 +3,7 @@
 	"tools.visitors.metrics.CommentRatioVisitor",
 	"tools.visitors.metrics.WMCnpVisitor",
 	"tools.visitors.metrics.WMCVisitor",
-	"tools.visitors.metrics.ImplVisitor"
+	"tools.visitors.metrics.ImplVisitor",
+	"tools.visitors.metrics.DITVisitor",
+	"tools.visitors.metrics.NOCVisitor"
 ]

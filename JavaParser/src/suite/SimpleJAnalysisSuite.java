@@ -93,7 +93,7 @@ public class SimpleJAnalysisSuite {
 						testSuit.analyzeClassDiagram(cu, null);
 						break;
 					case 'i':
-						if (counter == 0)
+						if (counter == 0){
 							System.out.println("These are the commands for This simple suite:\n");
 						System.out.println("(C)lass diagram analysis");
 						System.out.println("(B)ad Smell analysis");
@@ -101,6 +101,7 @@ public class SimpleJAnalysisSuite {
 						System.out.println("(A)nalyze All");
 						System.out.println("(I)nstructions");
 						System.out.println("(Q)uit");
+						}
 						counter++;
 						break;
 					case 'q':

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 
-public class Matrix implements DiGraphADT {			
+public class Matrix extends BoardListener {			
 	
 		private boolean[][] arrayArray;				//initialise the matrix: an array of arrays of type boolean
 		private int nodes;
