@@ -13,7 +13,8 @@ public class LargeClassVisitor extends VoidVisitorAdapter {
 		if (size < limit)
 			System.out.println("Welldone, " + c.getName() + " is a small class.");
 		else if (size > limit)
-			System.out.println("Uh oh, " + c.getName() + " is a very large class.\nSee if you can divide it up into smaller classes!");
-		
+			System.out.println("Uh oh, " + c.getName()
+					+ " is a very large class.\nSee if you can divide it up into smaller classes!");
+
 	}
 }

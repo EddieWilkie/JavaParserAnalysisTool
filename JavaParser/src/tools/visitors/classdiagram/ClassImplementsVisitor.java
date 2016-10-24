@@ -1,8 +1,5 @@
 package tools.visitors.classdiagram;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;

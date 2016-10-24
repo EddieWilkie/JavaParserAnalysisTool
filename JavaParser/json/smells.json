@@ -1,5 +1,6 @@
 [
 	"tools.visitors.codesmells.LargeClassVisitor",
 	"tools.visitors.codesmells.LongMethodVisitor",
-	"tools.visitors.codesmells.LongParameterVisitor"
+	"tools.visitors.codesmells.LongParameterVisitor",
+	"tools.visitors.codesmells.PrimitiveObsessionVisitor"
 ]
