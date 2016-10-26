@@ -11,7 +11,7 @@ public class SimpleBadSmellsAnalyzer implements Analyzer {
 	private List<VoidVisitorAdapter> visitors;
 
 	public SimpleBadSmellsAnalyzer() {
-		visitors = new JsonVisitorParser().getVisitorsFromJson("json/smells.json");
+		visitors = new JsonVisitorParser().getVisitorsFromJson("C:\\Users\\eddie\\IdeaProjects\\JavaParserAnalysisTool\\JavaParser\\json\\smells.json");
 	}
 
 	public void analyze(CompilationUnit cu, Object arg) {

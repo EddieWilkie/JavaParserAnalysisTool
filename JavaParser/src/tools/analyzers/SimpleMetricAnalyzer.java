@@ -11,7 +11,7 @@ public class SimpleMetricAnalyzer implements Analyzer {
 	private List<VoidVisitorAdapter> visitors;
 
 	public SimpleMetricAnalyzer() {
-		visitors = new JsonVisitorParser().getVisitorsFromJson("json/metrics.json");
+		visitors = new JsonVisitorParser().getVisitorsFromJson("C:\\Users\\eddie\\IdeaProjects\\JavaParserAnalysisTool\\JavaParser\\json\\metrics.json");
 
 	}
 

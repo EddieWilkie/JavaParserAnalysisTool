@@ -12,7 +12,7 @@ public class SimpleClassDiagramAnalyzer implements Analyzer {
 	private List<VoidVisitorAdapter> visitors;
 
 	public SimpleClassDiagramAnalyzer() {
-		visitors = new JsonVisitorParser().getVisitorsFromJson("json/classDiagram.json");
+		visitors = new JsonVisitorParser().getVisitorsFromJson("C:\\Users\\eddie\\IdeaProjects\\JavaParserAnalysisTool\\JavaParser\\json\\classDiagram.json");
 	}
 
 	@Override
